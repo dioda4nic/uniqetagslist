@@ -2,7 +2,7 @@
 	"name": "uniquetagslist",
 	"displayName": "uniquetagslist",
 	"description": "count all html tags in document matching regexp create a list and count quantity",
-  "version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "VysokovYurij",
 	"repository": "https://github.com/dioda4nic/uniqetagslist.git",
 	"engines": {
@@ -12,7 +12,6 @@
 		"Other"
 	],
 	"activationEvents": [
-    
 		"onCommand:uniquetagslist.uniquetagslist"
 	],
 	"main": "./extension.js",
@@ -20,10 +19,10 @@
 		"commands": [
 			{
 				"command": "uniquetagslist.uniquetagslist",
-        "title": "uniquetagslist",
-        "key": "ctrl+alt+u",
-        "mac": "cmd++alt+u",
-        "when": "editorTextFocus"
+				"title": "uniquetagslist",
+				"key": "ctrl+alt+u",
+				"mac": "cmd++alt+u",
+				"when": "editorTextFocus"
 			}
 		]
 	},
