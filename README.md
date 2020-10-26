@@ -15,7 +15,7 @@ If you have any requirements or dependencies, add a section describing those and
 use CTRL+ALT+U or command in pallete
 
 ### 1.0.0
-
+git
 Initial release of ...
 git 
 **Enjoy!**
