@@ -6,12 +6,13 @@
 	"publisher": "uniqetagslist",
 	"repository": "https://github.com/dioda4nic/uniqetagslist.git",
 	"engines": {
-		"vscode": "^1.50.0"
+		"vscode": "^1.41.0"
 	},
 	"categories": [
 		"Other"
 	],
 	"activationEvents": [
+    
 		"onCommand:uniquetagslist.uniquetagslist"
 	],
 	"main": "./extension.js",
@@ -19,7 +20,10 @@
 		"commands": [
 			{
 				"command": "uniquetagslist.uniquetagslist",
-				"title": "uniquetagslist"
+        "title": "uniquetagslist",
+        "key": "ctrl+alt+u",
+        "mac": "cmd++alt+u",
+        "when": "editorTextFocus"
 			}
 		]
 	},
@@ -29,7 +33,7 @@
 		"test": "node ./test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.50.0",
+		"@types/vscode": "^1.41.0",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.0.0",
 		"@types/node": "^12.11.7",
