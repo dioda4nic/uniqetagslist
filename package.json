@@ -2,7 +2,7 @@
 	"name": "uniquetagslist",
 	"displayName": "uniquetagslist",
 	"description": "count all html tags in document matching regexp create a list and count quantity",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "VysokovYurij",
 	"repository": "https://github.com/dioda4nic/uniqetagslist.git",
 	"engines": {
