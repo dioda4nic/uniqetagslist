@@ -10,53 +10,72 @@ const vscode = require('vscode');
  */
 function activate(context) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "uniquetagslist" is now active!');
+  // Use the console to output diagnostic information (console.log) and errors (console.error)
+  // This line of code will only be executed once when your extension is activated
+  console.log('Congratulations, your extension "uniquetagslist" is now active!');
   const status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-  
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('uniquetagslist.uniquetagslist', function () {
+
+  // The command has been defined in the package.json file
+  // Now provide the implementation of the command with  registerCommand
+  // The commandId parameter must match the command field in package.json
+  let disposable = vscode.commands.registerCommand('uniquetagslist.uniquetagslist', function () {
     // The code you place here will be executed every time your command is executed
-    
+
     // Get the active text editor
-		const editor = vscode.window.activeTextEditor;
+    const editor = vscode.window.activeTextEditor;
     if (editor) {
-			const document = editor.document;
-			const selection = editor.selection;
+      const document = editor.document;
+      const selection = editor.selection;
 
-			// Get the word within the selection
-			const word = document.getText(selection);
-     //	const reversed = word.split('').reverse().join('');
-     
-     let matches = word.matchAll(/<(\s*\w+)[^>]*>/g);
-     let tags = new Set() ;
-     for (let m of matches) {
-       tags.add(m[1]);
-     }
-     console.log('Unique tag count: ' + tags.size);
+      // Get the word within the selection
+      const word = document.getText(selection);
+      //	const reversed = word.split('').reverse().join('');
 
-     console.log(tags);
+      let matches = word.matchAll(/<(\s*\w+)[^>]*>/g);
+      var tags = new Set();
+      for (let m of matches) {
+        tags.add(m[1]);
+      }
+
+      console.log('Unique tag count: ' + tags.size);
+
+      console.log(tags);
       vscode.window.showInformationMessage('Unique tag count: ' + tags.size);
-		}
+    }
 
 
     // Display a message box to the user
-    status.text = 'total uniq tags: ${tags.size}';
-status.show()    
+    status.text = `total uniq tags: ${tags.size}`;
+    status.show()
+    var channel = vscode.window.createOutputChannel('HTML tags stats'); //вывод в окно OUTPUT 
+    channel.clear();
 
-	});
+  function renderResults(channel,tags) {
+    channel.appendLine(`Unique tags count is: ${tags.size}`);
+    channel.appendLine('HTML tags list:');
+    tags.forEach(entry => {
+      //`'${entry}'`
+      channel.appendLine(entry+' ');
+    });
+    channel.show();
+  };
 
-	context.subscriptions.push(disposable);
+  renderResults(channel, tags);
+
+
+  });
+
+   
+
+context.subscriptions.push(disposable);
 }
+
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
-function deactivate() {}
+function deactivate() { }
 
 module.exports = {
-	activate,
-	deactivate
+  activate,
+  deactivate
 }
